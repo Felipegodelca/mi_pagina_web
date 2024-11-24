@@ -1,0 +1,67 @@
+{% extends 'articulos/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Inicio - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Formulario de Búsqueda de Google Custom Search -->
+    <section style="text-align: center; margin-top: 20px;">
+        <h2>{% trans "Buscar en la Web" %}</h2>
+        <script async src="https://cse.google.com/cse.js?cx=01bf6865808874251"></script>
+        <div class="gcse-search"></div>
+    </section>
+
+    <!-- Tipos de Cambio -->
+    <section class="contenido-principal">
+        <aside class="tabla-tipos-cambio">
+            <h3>{% trans "Tipos de Cambio" %}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "Divisa" %}</th>
+                        <th>{% trans "Compra" %}</th>
+                        <th>{% trans "Venta" %}</th>
+                        <th>{% trans "Variación" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rate in tipos_de_cambio %}
+                    <tr>
+                        <td>{{ rate.currency }}</td>
+                        <td>{{ rate.buy }}</td>
+                        <td>{{ rate.sell }}</td>
+                        <td>
+                            {% if rate.variation > 0 %}
+                                <span class="flecha-arriba" style="color: green;">↑ {{ rate.variation }}</span>
+                            {% elif rate.variation < 0 %}
+                                <span class="flecha-abajo" style="color: red;">↓ {{ rate.variation }}</span>
+                            {% else %}
+                                <span>–</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">{% trans "No hay datos disponibles." %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </aside>
+
+        <!-- Sección de Bienvenida -->
+        <section class="bienvenida">
+            <h2>{% trans "Explora, Aprende y Crece" %}</h2>
+            <p>{% trans "Descubre artículos sobre filosofía, psicología y negocios, escritos para inspirar y reflexionar." %}</p>
+            <a href="{% url 'lista_articulos' %}" class="boton-principal">{% trans "Ver Artículos" %}</a>
+        </section>
+    </section>
+
+    <!-- Navegación -->
+    <div class="nav-links">
+        <a href="{% url 'lista_articulos' %}" class="nav-link">{% trans "Ver todos los artículos" %}</a>
+        <a href="{% url 'crear_articulo' %}" class="nav-link">{% trans "Crear un nuevo artículo" %}</a>
+    </div>
+</div>
+{% endblock %}

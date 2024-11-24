@@ -1,0 +1,53 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% trans 'KAFE KEAN - Explora artículos sobre filosofía, psicología y negocios. Inspira y reflexiona con contenido único.' %}">
+    <meta name="keywords" content="{% trans 'filosofía, psicología, negocios, reflexión, artículos, KAFE KEAN' %}">
+    <meta name="author" content="KAFE KEAN">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="{% get_current_language %}">
+    <meta property="og:title" content="KAFE KEAN">
+    <meta property="og:description" content="{% trans 'Explora artículos únicos sobre filosofía, psicología y negocios en KAFE KEAN.' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% if request.build_absolute_uri %}{{ request.build_absolute_uri }}{% else %}https://kafekean.com{% endif %}">
+    <meta property="og:image" content="{% static 'images/logo.png' %}">
+
+    <title>{% block title %}KAFE KEAN{% endblock %}</title>
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <h1>{% trans "Bienvenido a KAFE KEAN" %}</h1>
+        <nav>
+            <ul>
+                <li class="{% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">
+                    <a href="{% url 'inicio' %}">{% trans "Inicio" %}</a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'lista_articulos' %}active{% endif %}">
+                    <a href="{% url 'lista_articulos' %}">{% trans "Artículos" %}</a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'crear_articulo' %}active{% endif %}">
+                    <a href="{% url 'crear_articulo' %}">{% trans "Crear Artículo" %}</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    {% block content %}{% endblock %}
+
+    <!-- Pie de página -->
+    <footer>
+        <p>{% trans "© 2024 KAFE KEAN. Todos los derechos reservados." %}</p>
+    </footer>
+
+    <!-- Scripts adicionales -->
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

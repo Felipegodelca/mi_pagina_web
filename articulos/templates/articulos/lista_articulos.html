@@ -1,0 +1,45 @@
+{% extends 'articulos/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Lista de Artículos - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Artículos Disponibles" %}</h1>
+
+    <!-- Lista de Artículos -->
+    <ul class="article-list">
+        {% for articulo in articulos %}
+        <li class="article-item">
+            <h2>
+                <a href="{% url 'detalle_articulo' articulo.id %}" aria-label="{% trans 'Ver detalles de' %} {{ articulo.titulo }}">
+                    {{ articulo.titulo }}
+                </a>
+            </h2>
+            <p>{{ articulo.contenido|truncatewords:20 }}</p>
+            <p><strong>{% trans "Fecha de Publicación:" %}</strong> {{ articulo.fecha_publicacion|date:"d M Y H:i" }}</p>
+            <div class="article-actions">
+                <a href="{% url 'editar_articulo' articulo.id %}" class="btn-edit" aria-label="{% trans 'Editar este artículo' %}">
+                    {% trans "Editar" %}
+                </a>
+                <a href="{% url 'eliminar_articulo' articulo.id %}" class="btn-delete" aria-label="{% trans 'Eliminar este artículo' %}" onclick="return confirm('{% trans '¿Estás seguro de que deseas eliminar este artículo?' %}')">
+                    {% trans "Eliminar" %}
+                </a>
+                <a href="{% url 'detalle_articulo' articulo.id %}" class="btn-read-more" aria-label="{% trans 'Leer más sobre este artículo' %}">
+                    {% trans "Leer Más" %}
+                </a>
+            </div>
+        </li>
+        {% empty %}
+        <p>{% trans "No hay artículos disponibles en este momento. ¡Sé el primero en crear uno!" %}</p>
+        <a href="{% url 'crear_articulo' %}" class="btn-create">{% trans "Crear Artículo" %}</a>
+        {% endfor %}
+    </ul>
+
+    <!-- Navegación -->
+    <div class="nav-links">
+        <a href="{% url 'crear_articulo' %}" class="nav-link" aria-label="{% trans 'Crear un nuevo artículo' %}">{% trans "Crear un Nuevo Artículo" %}</a>
+        <a href="{% url 'inicio' %}" class="nav-link" aria-label="{% trans 'Volver a la página de inicio' %}">{% trans "Volver a la Página de Inicio" %}</a>
+    </div>
+</div>
+{% endblock %}

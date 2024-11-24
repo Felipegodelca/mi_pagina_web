@@ -1,0 +1,35 @@
+{% extends 'articulos/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Crear Artículo - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Título de la página -->
+    <h1>{% trans "Crear un Nuevo Artículo" %}</h1>
+
+    <!-- Contenedor principal del formulario -->
+    <section class="crear-articulo-container">
+        <h2>{% trans "Comparte tus ideas o actualizaciones" %}</h2>
+        
+        <!-- Formulario para crear un artículo -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="crear-articulo-form">
+                <!-- Renderizar los campos del formulario -->
+                {{ form.as_p }}
+            </div>
+            
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn-submit">
+                {% trans "Publicar Artículo" %}
+            </button>
+        </form>
+    </section>
+
+    <!-- Enlace para regresar a la página de inicio -->
+    <a href="{% url 'inicio' %}" class="btn-back">
+        {% trans "Volver a la Página de Inicio" %}
+    </a>
+</div>
+{% endblock %}

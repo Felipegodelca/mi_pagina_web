@@ -1,0 +1,382 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-19 22:32-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\articulos\admin.py:13
+msgid "Información del Artículo"
+msgstr "Artikelinformationen"
+
+#: .\articulos\admin.py:16
+msgid "Fechas"
+msgstr "Daten"
+
+#: .\articulos\forms.py:14
+msgid "Escribe el contenido aquí..."
+msgstr "Schreiben Sie hier den Inhalt..."
+
+#: .\articulos\forms.py:17 .\articulos\models.py:30
+msgid "Etiquetas separadas por comas, ej: reflexión, conciencia"
+msgstr "Mit Kommas getrennte Tags, z.B.: Reflexion, Bewusstsein"
+
+#: .\articulos\forms.py:21 .\articulos\models.py:13
+msgid "Título"
+msgstr "Titel"
+
+#: .\articulos\forms.py:22 .\articulos\models.py:16
+msgid "Contenido"
+msgstr "Inhalt"
+
+#: .\articulos\forms.py:23 .\articulos\models.py:26
+msgid "Tema"
+msgstr "Thema"
+
+#: .\articulos\forms.py:24 .\articulos\models.py:32
+msgid "Etiquetas"
+msgstr "Tags"
+
+#: .\articulos\forms.py:25 .\articulos\models.py:38
+msgid "Imagen"
+msgstr "Bild"
+
+#: .\articulos\forms.py:28
+msgid "Usa comas para separar las etiquetas."
+msgstr "Verwenden Sie Kommas, um Tags zu trennen."
+
+#: .\articulos\forms.py:35
+msgid "El título debe tener al menos 5 caracteres."
+msgstr "Der Titel muss mindestens 5 Zeichen lang sein."
+
+#: .\articulos\models.py:6
+msgid "Filosofía"
+msgstr "Philosophie"
+
+#: .\articulos\models.py:7
+msgid "Psicología"
+msgstr "Psychologie"
+
+#: .\articulos\models.py:8
+msgid "Negocios"
+msgstr "Geschäft"
+
+#: .\articulos\models.py:20
+msgid "Fecha de publicación"
+msgstr "Veröffentlichungsdatum"
+
+#: .\articulos\models.py:31
+msgid "sin etiqueta"
+msgstr "ohne Tag"
+
+#: .\articulos\templates\articulos\base.html:12 .\articulos\views.py:138
+msgid "Bienvenido a KAFE KEAN"
+msgstr "Willkommen bei KAFE KEAN"
+
+#: .\articulos\templates\articulos\base.html:15
+msgid "Inicio"
+msgstr "Startseite"
+
+#: .\articulos\templates\articulos\base.html:16
+msgid "Artículos"
+msgstr "Artikel"
+
+#: .\articulos\templates\articulos\base.html:17
+msgid "Crear Artículo"
+msgstr "Artikel erstellen"
+
+#: .\articulos\templates\articulos\base.html:19 .\mi_pagina_web\settings.py:89
+msgid "Español"
+msgstr "Spanisch"
+
+#: .\articulos\templates\articulos\base.html:20
+msgid "Inglés"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:21
+msgid "Alemán"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:35
+msgid "Todos los derechos reservados."
+msgstr "Alle Rechte vorbehalten."
+
+#: .\articulos\templates\articulos\crear_articulo.html:3
+msgid "Crear Artículo - KAFE KEAN"
+msgstr "Artikel erstellen - KAFE KEAN"
+
+#: .\articulos\templates\articulos\crear_articulo.html:7
+#: .\articulos\templates\articulos\lista_articulos.html:31
+msgid "Crear un Nuevo Artículo"
+msgstr "Neuen Artikel erstellen"
+
+#: .\articulos\templates\articulos\crear_articulo.html:9
+msgid "Compartir ideas o actualizaciones"
+msgstr "Teilen Sie Ideen oder Updates"
+
+#: .\articulos\templates\articulos\crear_articulo.html:16
+msgid "Publicar"
+msgstr "Veröffentlichen"
+
+#: .\articulos\templates\articulos\crear_articulo.html:17
+#: .\articulos\templates\articulos\editar_articulo.html:15
+#: .\articulos\templates\articulos\eliminar_articulo.html:18
+msgid "Cancelar"
+msgstr "Abbrechen"
+
+#: .\articulos\templates\articulos\crear_articulo.html:22
+#: .\articulos\templates\articulos\detalle_articulo.html:17
+msgid "Volver a la lista de artículos"
+msgstr "Zurück zur Artikelliste"
+
+#: .\articulos\templates\articulos\crear_articulo.html:23
+#: .\articulos\templates\articulos\detalle_articulo.html:18
+#: .\articulos\templates\articulos\editar_articulo.html:20
+#: .\articulos\templates\articulos\eliminar_articulo.html:23
+msgid "Volver a la página de inicio"
+msgstr "Zurück zur Startseite"
+
+#: .\articulos\templates\articulos\detalle_articulo.html:14
+msgid "Fecha de publicación:"
+msgstr "Veröffentlichungsdatum:"
+
+#: .\articulos\templates\articulos\editar_articulo.html:3
+#, fuzzy
+#| msgid "Crear Artículo - KAFE KEAN"
+msgid "Editar Artículo - KAFE KEAN"
+msgstr "Artikel erstellen - KAFE KEAN"
+
+#: .\articulos\templates\articulos\editar_articulo.html:7
+msgid "Editar Artículo"
+msgstr "Artikel bearbeiten"
+
+#: .\articulos\templates\articulos\editar_articulo.html:14
+msgid "Guardar Cambios"
+msgstr "Änderungen speichern"
+
+#: .\articulos\templates\articulos\editar_articulo.html:19
+#: .\articulos\templates\articulos\eliminar_articulo.html:22
+msgid "Volver a la Lista"
+msgstr "Zurück zur Liste"
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:3
+#, fuzzy
+#| msgid "Crear Artículo - KAFE KEAN"
+msgid "Eliminar Artículo - KAFE KEAN"
+msgstr "Artikel erstellen - KAFE KEAN"
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:7
+msgid "¿Estás seguro de que deseas eliminar este artículo?"
+msgstr "Sind Sie sicher, dass Sie diesen Artikel löschen möchten?"
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:9
+#, fuzzy
+#| msgid "Título"
+msgid "Título:"
+msgstr "Titel"
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:12
+#, fuzzy
+#| msgid "Contenido"
+msgid "Contenido:"
+msgstr "Inhalt"
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:17
+msgid "Confirmar Eliminación"
+msgstr "Löschung bestätigen"
+
+#: .\articulos\templates\articulos\inicio.html:4
+#, fuzzy
+#| msgid "Bienvenido a KAFE KEAN"
+msgid "Inicio - KAFE KEAN"
+msgstr "Willkommen bei KAFE KEAN"
+
+#: .\articulos\templates\articulos\inicio.html:10
+msgid "Buscar en la Web"
+msgstr "Im Web suchen"
+
+#: .\articulos\templates\articulos\inicio.html:18
+msgid "Tipos de Cambio"
+msgstr "Wechselkurse"
+
+#: .\articulos\templates\articulos\inicio.html:22
+msgid "Divisa"
+msgstr "Währung"
+
+#: .\articulos\templates\articulos\inicio.html:23
+msgid "Compra"
+msgstr "Kauf"
+
+#: .\articulos\templates\articulos\inicio.html:24
+msgid "Venta"
+msgstr "Verkauf"
+
+#: .\articulos\templates\articulos\inicio.html:25
+msgid "Variación"
+msgstr "Änderung"
+
+#: .\articulos\templates\articulos\inicio.html:46
+#, fuzzy
+#| msgid "No hay artículos disponibles."
+msgid "No hay datos disponibles."
+msgstr "Keine Artikel verfügbar."
+
+#: .\articulos\templates\articulos\inicio.html:55
+msgid "Explora, Aprende y Crece"
+msgstr "Entdecken, Lernen und Wachsen"
+
+#: .\articulos\templates\articulos\inicio.html:56
+msgid ""
+"Descubre artículos sobre filosofía, psicología y negocios, escritos para "
+"inspirar y reflexionar."
+msgstr ""
+"Entdecken Sie Artikel über Philosophie, Psychologie und Wirtschaft, die zum "
+"Inspirieren und Nachdenken anregen."
+
+#: .\articulos\templates\articulos\inicio.html:57
+msgid "Ver Artículos"
+msgstr "Artikel ansehen"
+
+#: .\articulos\templates\articulos\inicio.html:63
+#, fuzzy
+#| msgid "Ver Artículos"
+msgid "Ver todos los artículos"
+msgstr "Artikel ansehen"
+
+#: .\articulos\templates\articulos\inicio.html:64
+msgid "Crear un nuevo artículo"
+msgstr "Neuen Artikel erstellen"
+
+#: .\articulos\templates\articulos\lista_articulos.html:3
+#, fuzzy
+#| msgid "Crear Artículo - KAFE KEAN"
+msgid "Lista de Artículos - KAFE KEAN"
+msgstr "Artikel erstellen - KAFE KEAN"
+
+#: .\articulos\templates\articulos\lista_articulos.html:7
+msgid "Artículos Disponibles"
+msgstr "Verfügbare Artikel"
+
+#: .\articulos\templates\articulos\lista_articulos.html:17
+#, fuzzy
+#| msgid "Fecha de publicación:"
+msgid "Fecha de Publicación:"
+msgstr "Veröffentlichungsdatum:"
+
+#: .\articulos\templates\articulos\lista_articulos.html:19
+msgid "Editar"
+msgstr "Bearbeiten"
+
+#: .\articulos\templates\articulos\lista_articulos.html:20
+msgid "Eliminar"
+msgstr "Löschen"
+
+#: .\articulos\templates\articulos\lista_articulos.html:21
+#, fuzzy
+#| msgid "Leer más"
+msgid "Leer Más"
+msgstr "Weiterlesen"
+
+#: .\articulos\templates\articulos\lista_articulos.html:25
+#, fuzzy
+#| msgid "No hay artículos disponibles."
+msgid "No hay artículos disponibles en este momento."
+msgstr "Keine Artikel verfügbar."
+
+#: .\articulos\templates\articulos\lista_articulos.html:32
+#, fuzzy
+#| msgid "Volver a la página de inicio"
+msgid "Volver a la Página de Inicio"
+msgstr "Zurück zur Startseite"
+
+#: .\articulos\views.py:15
+msgid "Idioma cambiado exitosamente"
+msgstr ""
+
+#: .\articulos\views.py:87
+msgid "Artículo creado exitosamente"
+msgstr ""
+
+#: .\articulos\views.py:90
+#, fuzzy
+#| msgid "Volver a la lista de artículos"
+msgid "Hubo un error al crear el artículo"
+msgstr "Zurück zur Artikelliste"
+
+#: .\articulos\views.py:105
+msgid "Artículo editado exitosamente"
+msgstr ""
+
+#: .\articulos\views.py:108
+#, fuzzy
+#| msgid "Volver a la lista de artículos"
+msgid "Hubo un error al editar el artículo"
+msgstr "Zurück zur Artikelliste"
+
+#: .\articulos\views.py:121
+msgid "Artículo eliminado exitosamente"
+msgstr ""
+
+#: .\mi_pagina_web\settings.py:90
+msgid "English"
+msgstr "Englisch"
+
+#: .\mi_pagina_web\settings.py:91
+msgid "Deutsch"
+msgstr "Deutsch"
+
+#: .\mi_pagina_web\urls.py:16
+msgid "articulos/"
+msgstr "artikel/"
+
+#: .\mi_pagina_web\urls.py:17
+msgid "articulos/crear/"
+msgstr "artikel/erstellen/"
+
+#: .\mi_pagina_web\urls.py:18
+msgid "articulos/editar/<int:pk>/"
+msgstr "artikel/bearbeiten/<int:pk>/"
+
+#: .\mi_pagina_web\urls.py:19
+msgid "articulos/eliminar/<int:pk>/"
+msgstr "artikel/loeschen/<int:pk>/"
+
+#: .\mi_pagina_web\urls.py:20
+msgid "articulos/detalle/<int:pk>/"
+msgstr "artikel/detail/<int:pk>/"
+
+#~ msgid "Eliminar Artículo"
+#~ msgstr "Artikel löschen"
+
+#~ msgid "KAFE KEAN - Inicio"
+#~ msgstr "KAFE KEAN - Startseite"
+
+#~ msgid "KAFE KEAN"
+#~ msgstr "KAFE KEAN"
+
+#~ msgid "Lista de Artículos"
+#~ msgstr "Artikelübersicht"
+
+#~ msgid "Fecha:"
+#~ msgstr "Datum:"
+
+#~ msgid "Peso Mexicano (MXN)"
+#~ msgstr "Mexikanischer Peso (MXN)"
+
+#~ msgid "Real Brasileño (BRL)"
+#~ msgstr "Brasilianischer Real (BRL)"
+
+#~ msgid "Dólar Canadiense (CAD)"
+#~ msgstr "Kanadischer Dollar (CAD)"

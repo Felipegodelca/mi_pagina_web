@@ -1,0 +1,348 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("/static/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor de la página */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Encabezado */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Sección de Bienvenida */
+.bienvenida {
+    display: inline-block;
+    width: 60%;
+    vertical-align: top;
+    text-align: center;
+    padding: 100px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.bienvenida h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.bienvenida p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Tabla de Tipos de Cambio */
+.tabla-tipos-cambio {
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin: 20px 20px 0 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-tipos-cambio h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.tabla-tipos-cambio table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-tipos-cambio th, .tabla-tipos-cambio td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.tabla-tipos-cambio th {
+    background-color: #333;
+    color: #fff;
+}
+
+.tabla-tipos-cambio tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-tipos-cambio tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para flechas de variación */
+.flecha-arriba {
+    color: green;
+    font-weight: bold;
+}
+
+.flecha-abajo {
+    color: red;
+    font-weight: bold;
+}
+
+/* Estilo para botones principales */
+.boton-principal {
+    background-color: #ff6600;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.boton-principal:hover {
+    background-color: #ff4500;
+}
+
+/* Pie de Página */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para los enlaces de navegación en el contenido */
+.nav-link {
+    display: inline-block;
+    color: #fff;
+    background-color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto al pasar el cursor sobre los enlaces */
+.nav-link:hover {
+    background-color: #555;
+    color: #ff6600;
+}
+
+/* Estilo para el botón de enviar en el formulario */
+button[type="submit"],
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+.submit-button:hover {
+    background-color: #ff4500;
+}
+
+/* Estilo para el botón de eliminación */
+.delete-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #d9534f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+/* Lista de artículos */
+.article-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+}
+
+/* Estilo de imagen para los artículos */
+.article-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-item h2 a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-item h2 a:hover {
+    color: #ff6600;
+}
+
+.article-item p {
+    margin: 10px 0;
+}
+
+/* Estilos para la sección de crear un artículo */
+.crear-articulo-container {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crear-articulo-container h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.crear-articulo-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.crear-articulo-opciones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-publicar {
+    background-color: #0078d4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-publicar:hover {
+    background-color: #005a9e;
+}
+
+.btn-contrato {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-contrato:hover {
+    background-color: #999;
+}
+
+.nav-links {
+    margin-top: 20px;
+    text-align: center;
+}

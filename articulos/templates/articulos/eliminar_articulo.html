@@ -1,0 +1,36 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Eliminar Artículo - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Título de la sección -->
+    <h1>{% trans "Eliminar Artículo" %}</h1>
+    <p>{% trans "¿Estás seguro de que deseas eliminar el siguiente artículo?" %}</p>
+
+    <!-- Detalles del artículo -->
+    <div class="article-details">
+        <h2>{{ articulo.titulo }}</h2>
+        <p><strong>{% trans "Tema:" %}</strong> {{ articulo.get_tema_display }}</p>
+        <p><strong>{% trans "Publicado el:" %}</strong> {{ articulo.fecha_publicacion|date:"d M Y H:i" }}</p>
+        <p>{{ articulo.contenido }}</p>
+        {% if articulo.imagen %}
+        <div class="article-image">
+            <img src="{{ articulo.imagen.url }}" alt="{% trans 'Imagen del artículo' %}" style="max-width: 100%; height: auto;">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Formulario para confirmar la eliminación -->
+    <form method="post" class="form-eliminar-articulo">
+        {% csrf_token %}
+        <button type="submit" class="btn-delete" aria-label="{% trans 'Confirmar eliminación del artículo' %}">
+            {% trans "Eliminar Artículo" %}
+        </button>
+        <a href="{% url 'lista_articulos' %}" class="btn-cancel" aria-label="{% trans 'Cancelar y volver a la lista de artículos' %}">
+            {% trans "Cancelar" %}
+        </a>
+    </form>
+</div>
+{% endblock %}
