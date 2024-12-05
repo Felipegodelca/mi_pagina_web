@@ -1,0 +1,21 @@
+# Archivos de entorno y bases de datos locales
+.env
+db.sqlite3
+
+# Archivos compilados de Python
+*.pyc
+__pycache__/
+
+# Archivos de configuración del sistema
+*.log
+*.pot
+*.py[cod]
+*.swp
+*.swo
+.DS_Store
+
+# Archivos estáticos generados
+staticfiles/
+
+# Archivos y carpetas de Visual Studio Code
+.vscode/
