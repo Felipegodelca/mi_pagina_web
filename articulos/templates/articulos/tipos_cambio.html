@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <th>Moneda</th>
+            <th>Compra</th>
+            <th>Venta</th>
+            <th>Variación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipo in tipos_de_cambio %}
+        <tr>
+            <td>{{ tipo.currency }}</td>
+            <td>{{ tipo.buy }}</td>
+            <td>{{ tipo.sell }}</td>
+            <td>{{ tipo.variation }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Fecha de actualización: {{ fecha }}</p>

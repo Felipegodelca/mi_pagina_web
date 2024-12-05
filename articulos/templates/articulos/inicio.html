@@ -16,38 +16,8 @@
     <section class="contenido-principal">
         <aside class="tabla-tipos-cambio">
             <h3>{% trans "Tipos de Cambio" %}</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>{% trans "Divisa" %}</th>
-                        <th>{% trans "Compra" %}</th>
-                        <th>{% trans "Venta" %}</th>
-                        <th>{% trans "Variación" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for rate in tipos_de_cambio %}
-                    <tr>
-                        <td>{{ rate.currency }}</td>
-                        <td>{{ rate.buy }}</td>
-                        <td>{{ rate.sell }}</td>
-                        <td>
-                            {% if rate.variation > 0 %}
-                                <span class="flecha-arriba" style="color: green;">↑ {{ rate.variation }}</span>
-                            {% elif rate.variation < 0 %}
-                                <span class="flecha-abajo" style="color: red;">↓ {{ rate.variation }}</span>
-                            {% else %}
-                                <span>–</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4">{% trans "No hay datos disponibles." %}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <!-- Incluir la plantilla de tipos de cambio -->
+            {% include 'articulos/tipos_cambio.html' %}
         </aside>
 
         <!-- Sección de Bienvenida -->
@@ -58,10 +28,24 @@
         </section>
     </section>
 
+    <!-- Opciones para autenticación -->
+    <section class="auth-opciones" style="margin-top: 20px; text-align: center;">
+        {% if user.is_authenticated %}
+            <p>{% trans "¡Bienvenido de nuevo, " %}{{ user.username }}!</p>
+            <a href="{% url 'logout' %}" class="boton-secundario">{% trans "Cerrar Sesión" %}</a>
+        {% else %}
+            <p>{% trans "¿Nuevo aquí?" %}</p>
+            <a href="{% url 'registro' %}" class="boton-secundario">{% trans "Crear Cuenta" %}</a>
+            <a href="{% url 'login' %}" class="boton-secundario">{% trans "Iniciar Sesión" %}</a>
+        {% endif %}
+    </section>
+
     <!-- Navegación -->
     <div class="nav-links">
         <a href="{% url 'lista_articulos' %}" class="nav-link">{% trans "Ver todos los artículos" %}</a>
-        <a href="{% url 'crear_articulo' %}" class="nav-link">{% trans "Crear un nuevo artículo" %}</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'crear_articulo' %}" class="nav-link">{% trans "Crear un nuevo artículo" %}</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

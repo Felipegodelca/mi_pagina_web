@@ -1,0 +1,14 @@
+{% extends 'articulos/base.html' %}
+
+{% load i18n %} <!-- Cargar herramientas de traducción -->
+
+{% block content %}
+<div class="container">
+    <h1>{% trans "Register" %}</h1> <!-- Traducción dinámica del título -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Este ya incluye traducciones dinámicas desde Django -->
+        <button type="submit">{% trans "Sign up" %}</button> <!-- Traducción dinámica del botón -->
+    </form>
+</div>
+{% endblock %}

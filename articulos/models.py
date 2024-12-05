@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-
+from django.contrib.auth.models import User
 
 class Articulo(models.Model):
     # Opciones para el campo de tema
@@ -62,3 +62,10 @@ class Articulo(models.Model):
     # Representación en texto
     def __str__(self):
         return self.titulo
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    preferencias = models.TextField(blank=True, null=True)  # Por ejemplo, preferencias de usuario
+
+    def __str__(self):
+        return f"Perfil de {self.user.username}"

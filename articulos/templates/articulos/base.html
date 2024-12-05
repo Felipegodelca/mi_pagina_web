@@ -1,6 +1,6 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html lang="{% get_current_language %}">
+<html lang="{% get_current_language as current_language %}{{ current_language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +8,27 @@
     <meta name="keywords" content="{% trans 'filosofía, psicología, negocios, reflexión, artículos, KAFE KEAN' %}">
     <meta name="author" content="KAFE KEAN">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="{% get_current_language %}">
+    <meta name="language" content="{{ current_language }}">
     <meta property="og:title" content="KAFE KEAN">
     <meta property="og:description" content="{% trans 'Explora artículos únicos sobre filosofía, psicología y negocios en KAFE KEAN.' %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{% if request.build_absolute_uri %}{{ request.build_absolute_uri }}{% else %}https://kafekean.com{% endif %}">
-    <meta property="og:image" content="{% static 'images/logo.png' %}">
+    <meta property="og:image" content="{% static 'img/kafe_kean_logo.jpg' %}">
 
     <title>{% block title %}KAFE KEAN{% endblock %}</title>
 
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <!-- Encabezado -->
-    <header>
+    <header style="text-align: center; margin-bottom: 20px;">
+        <!-- Imagen del logo -->
+        <img src="{% static 'img/kafe_kean_logo.jpg' %}" alt="{% trans 'KAFE KEAN Logo' %}" style="max-width: 150px; height: auto;"> 
         <h1>{% trans "Bienvenido a KAFE KEAN" %}</h1>
         <nav>
             <ul>
+                <!-- Opciones principales -->
                 <li class="{% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">
                     <a href="{% url 'inicio' %}">{% trans "Inicio" %}</a>
                 </li>
@@ -35,12 +38,22 @@
                 <li class="{% if request.resolver_match.url_name == 'crear_articulo' %}active{% endif %}">
                     <a href="{% url 'crear_articulo' %}">{% trans "Crear Artículo" %}</a>
                 </li>
+
+                <!-- Opciones según autenticación -->
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">{% trans "Cerrar Sesión" %}</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">{% trans "Iniciar Sesión" %}</a></li>
+                    <li><a href="{% url 'registro' %}">{% trans "Registrarse" %}</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <!-- Contenido principal -->
-    {% block content %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
     <!-- Pie de página -->
     <footer>
