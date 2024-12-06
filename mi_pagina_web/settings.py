@@ -6,9 +6,9 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')  # Usar variable de entorno
-DEBUG = False  # Cambiar a False en producción
-LLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kafekean.com', 'www.kafekean.com', 'mi-app.onrender.com']
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')  # Cargado desde el archivo .env
+DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Cargado desde el archivo .env
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 # Installed Applications
 INSTALLED_APPS = [
@@ -59,8 +59,8 @@ WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Para producción, considera usar PostgreSQL o MySQL
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',  # Considera PostgreSQL o MySQL para producción
+        'NAME': os.getenv('DATABASE_URL', BASE_DIR / 'db.sqlite3'),  # Configurado desde .env
     }
 }
 
@@ -79,19 +79,15 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Archivos estáticos
-STATIC_URL = '/static/'  # URL base para archivos estáticos
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Directorio donde están tus archivos estáticos
-]
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Carpeta para recopilar archivos estáticos en producción
-
-# Archivos multimedia
-MEDIA_URL = '/media/'  # URL base para archivos multimedia
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta donde se almacenan los archivos multimedia
-
-# Configuración adicional para archivos estáticos
+# Static Files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# Media Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Auto Field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -105,18 +101,17 @@ LANGUAGES = [
 
 # Carpeta para archivos de traducción
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',  # Carpeta donde se guardan archivos .po y .mo
+    BASE_DIR / 'locale',
 ]
 
-# Configuración adicional
-CSRF_TRUSTED_ORIGINS = [
-    'https://kafekean.com',
-    'https://www.kafekean.com',
-]
+# CSRF and Cookie Security
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True') == 'True'
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True') == 'True'
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 # Configuración de redirección después de login y logout
-LOGIN_REDIRECT_URL = '/'  # Redirige a la página de inicio después de iniciar sesión
-LOGOUT_REDIRECT_URL = '/'  # Redirige a la página de inicio después de cerrar sesión
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Debugging y otras configuraciones opcionales
 LOGGING = {
