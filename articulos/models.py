@@ -39,11 +39,12 @@ class Articulo(models.Model):
         verbose_name=_("Etiquetas"),
     )
     imagen = models.ImageField(
-        upload_to='imagenes_articulos/',
+        upload_to='imagenes_articulos/',  # Asegúrate de configurar correctamente los medios en settings.py
         blank=True,  # Opcional
         null=True,
         verbose_name=_("Imagen"),
     )
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     # Métodos adicionales
     def clean(self):

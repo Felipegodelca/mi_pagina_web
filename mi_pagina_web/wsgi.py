@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
 import os
-
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings')
+# Establece el módulo de configuración según el entorno (desarrollo o producción)
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
+
+if DJANGO_ENV == 'production':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings.production')  # Configuración para producción
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings')  # Configuración para desarrollo
 
 application = get_wsgi_application()

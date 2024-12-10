@@ -7,9 +7,9 @@ class ArticuloAdmin(admin.ModelAdmin):
     # Campos visibles en la lista de artículos
     list_display = ('titulo', 'tema', 'fecha_publicacion')  
     # Campos por los que se puede buscar
-    search_fields = ('titulo', 'contenido', 'etiquetas')  
+    search_fields = ('titulo', 'contenido', 'etiquetas__nombre')  # Cambié 'etiquetas' por 'etiquetas__nombre' para filtrar por nombre de etiquetas, si tienes una relación ManyToMany con etiquetas.
     # Filtros laterales para mejorar la navegación
-    list_filter = ('tema', 'fecha_publicacion')  
+    list_filter = ('tema', 'fecha_publicacion', 'etiquetas')  # Añadí 'etiquetas' para filtrar por etiquetas en el admin
     # Orden de los artículos en la lista
     ordering = ('-fecha_publicacion',)  
 

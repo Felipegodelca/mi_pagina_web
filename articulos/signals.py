@@ -9,11 +9,15 @@ def crear_perfil(sender, instance, created, **kwargs):
     Crea automáticamente un perfil para cada usuario nuevo.
     """
     if created:
-        Perfil.objects.create(user=instance)
+        # Solo se crea un perfil si el usuario es nuevo
+        Perfil.objects.get_or_create(user=instance)
 
 @receiver(post_save, sender=User)
 def guardar_perfil(sender, instance, **kwargs):
     """
     Guarda automáticamente el perfil cuando se guarda el usuario.
+    Esto asegura que cualquier cambio en el usuario también se refleje en el perfil.
     """
-    instance.perfil.save()
+    # Verifica si el perfil existe antes de intentar guardarlo
+    if hasattr(instance, 'perfil'):
+        instance.perfil.save()

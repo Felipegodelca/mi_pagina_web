@@ -5,41 +5,59 @@
 
 {% block content %}
 <div class="container">
-    <h1>{% trans "Artículos Disponibles" %}</h1>
+    <!-- Formulario de Búsqueda de Google Custom Search -->
+    <section class="search-section" style="text-align: center; margin-top: 20px;" aria-label="{% trans 'Búsqueda personalizada en la web' %}">
+        <h2>{% trans "Buscar en la Web" %}</h2>
+        <script async src="https://cse.google.com/cse.js?cx=01bf6865808874251"></script>
+        <div class="gcse-search"></div>
+    </section>
 
-    <!-- Lista de Artículos -->
-    <ul class="article-list">
-        {% for articulo in articulos %}
-        <li class="article-item">
-            <h2>
-                <a href="{% url 'detalle_articulo' articulo.id %}" aria-label="{% trans 'Ver detalles de' %} {{ articulo.titulo }}">
-                    {{ articulo.titulo }}
-                </a>
-            </h2>
-            <p>{{ articulo.contenido|truncatewords:20 }}</p>
-            <p><strong>{% trans "Fecha de Publicación:" %}</strong> {{ articulo.fecha_publicacion|date:"d M Y H:i" }}</p>
-            <div class="article-actions">
-                <a href="{% url 'editar_articulo' articulo.id %}" class="btn-edit" aria-label="{% trans 'Editar este artículo' %}">
-                    {% trans "Editar" %}
-                </a>
-                <a href="{% url 'eliminar_articulo' articulo.id %}" class="btn-delete" aria-label="{% trans 'Eliminar este artículo' %}" onclick="return confirm('{% trans '¿Estás seguro de que deseas eliminar este artículo?' %}')">
-                    {% trans "Eliminar" %}
-                </a>
-                <a href="{% url 'detalle_articulo' articulo.id %}" class="btn-read-more" aria-label="{% trans 'Leer más sobre este artículo' %}">
-                    {% trans "Leer Más" %}
-                </a>
-            </div>
-        </li>
-        {% empty %}
-        <p>{% trans "No hay artículos disponibles en este momento. ¡Sé el primero en crear uno!" %}</p>
-        <a href="{% url 'crear_articulo' %}" class="btn-create">{% trans "Crear Artículo" %}</a>
-        {% endfor %}
-    </ul>
+    <!-- Tipos de Cambio -->
+    <section class="contenido-principal">
+        <aside class="tabla-tipos-cambio" aria-label="{% trans 'Tipos de cambio' %}">
+            <h3>{% trans "Tipos de Cambio" %}</h3>
+            <!-- Incluir la plantilla de tipos de cambio -->
+            {% include 'articulos/tipos_cambio.html' %}
+        </aside>
+
+        <!-- Sección de Bienvenida -->
+        <section class="bienvenida" aria-label="{% trans 'Sección de bienvenida' %}">
+            <h2>{% trans "Explora, Aprende y Crece" %}</h2>
+            <p>{% trans "Descubre artículos sobre filosofía, psicología y negocios, escritos para inspirar y reflexionar." %}</p>
+            <a href="{% url 'articulos:lista_articulos' %}" class="boton-principal" aria-label="{% trans 'Ver todos los artículos disponibles' %}">
+                {% trans "Ver Artículos" %}
+            </a>
+        </section>
+    </section>
+
+    <!-- Opciones para autenticación -->
+    <section class="auth-opciones" style="margin-top: 20px; text-align: center;" aria-label="{% trans 'Opciones de autenticación' %}">
+        {% if user.is_authenticated %}
+            <p>{% trans "¡Bienvenido de nuevo, " %}{{ user.username }}!</p>
+            <a href="{% url 'logout' %}" class="boton-secundario" aria-label="{% trans 'Cerrar sesión para' %} {{ user.username }}">
+                {% trans "Cerrar Sesión" %}
+            </a>
+        {% else %}
+            <p>{% trans "¿Nuevo aquí?" %}</p>
+            <a href="{% url 'articulos:registro' %}" class="boton-secundario" aria-label="{% trans 'Crear una nueva cuenta' %}">
+                {% trans "Crear Cuenta" %}
+            </a>
+            <a href="{% url 'articulos:login' %}" class="boton-secundario" aria-label="{% trans 'Iniciar sesión en KAFE KEAN' %}">
+                {% trans "Iniciar Sesión" %}
+            </a>
+        {% endif %}
+    </section>
 
     <!-- Navegación -->
-    <div class="nav-links">
-        <a href="{% url 'crear_articulo' %}" class="nav-link" aria-label="{% trans 'Crear un nuevo artículo' %}">{% trans "Crear un Nuevo Artículo" %}</a>
-        <a href="{% url 'inicio' %}" class="nav-link" aria-label="{% trans 'Volver a la página de inicio' %}">{% trans "Volver a la Página de Inicio" %}</a>
+    <div class="nav-links" aria-label="{% trans 'Enlaces de navegación' %}">
+        <a href="{% url 'articulos:lista_articulos' %}" class="nav-link" aria-label="{% trans 'Explorar todos los artículos publicados' %}">
+            {% trans "Ver todos los artículos" %}
+        </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'articulos:crear_articulo' %}" class="nav-link" aria-label="{% trans 'Acceso para crear un nuevo artículo' %}">
+                {% trans "Crear un nuevo artículo" %}
+            </a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

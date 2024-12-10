@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Error (500)</title>
+    <title>{% trans "Server Error (500)" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Oops! Something went wrong.</h1>
-    <p>We're working to fix it. Please try again later.</p>
+    <div class="error-container">
+        <h1>{% trans "Oops! Something went wrong." %}</h1>
+        <p>{% trans "We're working to fix it. Please try again later." %}</p>
+        <a href="{% url 'inicio' %}" class="btn-back">{% trans "Back to Home" %}</a>
+    </div>
 </body>
 </html>

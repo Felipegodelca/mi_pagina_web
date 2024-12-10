@@ -6,30 +6,51 @@
 {% block content %}
 <div class="container">
     <!-- Título de la página -->
-    <h1>{% trans "Crear un Nuevo Artículo" %}</h1>
+    <header class="page-header">
+        <h1>{% trans "Crear un Nuevo Artículo" %}</h1>
+        <p class="subtitle">{% trans "Comparte tus ideas, reflexiones o investigaciones en filosofía, psicología y negocios." %}</p>
+    </header>
 
     <!-- Contenedor principal del formulario -->
-    <section class="crear-articulo-container">
-        <h2>{% trans "Comparte tus ideas o actualizaciones" %}</h2>
-        
+    <section class="form-container">
+        <h2>{% trans "Publica tu Artículo" %}</h2>
+
         <!-- Formulario para crear un artículo -->
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" class="form-create-article">
             {% csrf_token %}
-            <div class="crear-articulo-form">
-                <!-- Renderizar los campos del formulario -->
-                {{ form.as_p }}
-            </div>
             
+            <div class="form-fields">
+                <!-- Renderizar los campos del formulario -->
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-messages">
+                                {% for error in field.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
             <!-- Botón para enviar el formulario -->
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn btn-primary">
                 {% trans "Publicar Artículo" %}
             </button>
         </form>
     </section>
 
-    <!-- Enlace para regresar a la página de inicio -->
-    <a href="{% url 'inicio' %}" class="btn-back">
-        {% trans "Volver a la Página de Inicio" %}
-    </a>
+    <!-- Enlace para regresar a la lista de artículos -->
+    <section class="back-link">
+        <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-secondary">
+            {% trans "Volver a la Lista de Artículos" %}
+        </a>
+    </section>
 </div>
+
 {% endblock %}
