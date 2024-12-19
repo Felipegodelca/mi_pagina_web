@@ -8,24 +8,24 @@ from articulos.views import CustomLoginView, debug_headers
 
 urlpatterns = [
     # Administración
-    path('admin/', admin.site.urls),  # Ruta para el panel de administración
+    path('admin/', admin.site.urls, name='admin'),
 
     # Página de inicio
-    path('', views.inicio, name='inicio'),  # Ruta para la página principal de inicio
+    path('', views.inicio, name='inicio'),
 
     # Artículos (rutas traducibles)
-    path(_('articulos/'), include('articulos.urls')),  # Incluye las URLs de la app 'articulos'
+    path(_('articulos/'), include('articulos.urls')),  # Incluir rutas de la app 'articulos'
 
     # Cambio de idioma
     path(_('cambiar_idioma/<str:idioma>/'), views.cambiar_idioma, name='cambiar_idioma'),
 
     # Autenticación
-    path('accounts/login/', CustomLoginView.as_view(), name='login'),  # Vista personalizada de inicio de sesión
-    path('accounts/logout/', views.logout_view, name='logout'),  # Ruta personalizada para cerrar sesión
-    path('accounts/registro/', views.registro, name='registro'),  # Ruta para registrar un nuevo usuario
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),  # Login personalizado
+    path('accounts/logout/', views.logout_view, name='logout'),  # Logout personalizado
+    path('accounts/registro/', views.registro, name='registro'),  # Registro de usuario
 
     # Depuración
-    path('debug/headers/', debug_headers, name='debug_headers'),
+    path('debug/headers/', debug_headers, name='debug_headers'),  # Ruta para debug de cabeceras
 ]
 
 # Archivos estáticos y multimedia en desarrollo
@@ -36,5 +36,5 @@ if settings.DEBUG:
 # Rutas adicionales en producción
 if not settings.DEBUG:
     urlpatterns += [
-        path('accounts/', include('django.contrib.auth.urls')),  # Rutas adicionales para autenticación
+        path('accounts/', include('django.contrib.auth.urls')),  # Rutas predeterminadas de autenticación
     ]
