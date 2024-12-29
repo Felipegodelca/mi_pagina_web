@@ -1,0 +1,58 @@
+# ==========================
+# 🛡️ ARCHIVOS SENSIBLES
+# ==========================
+.env*
+!env.example       # Ejemplo de variables de entorno (si existe)
+
+# ==========================
+# 🗂️ BASE DE DATOS
+# ==========================
+db.sqlite3
+db.sqlite3-journal
+
+# ==========================
+# 🐍 ARCHIVOS COMPILADOS DE PYTHON
+# ==========================
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# ==========================
+# 📄 ARCHIVOS DE LOG
+# ==========================
+*.log
+
+# ==========================
+# ⚙️ ARCHIVOS DE SISTEMA
+# ==========================
+*.pot
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ==========================
+# 📦 ENTORNOS VIRTUALES
+# ==========================
+venv/
+venv_prod/
+*.env
+
+# ==========================
+# 📂 ARCHIVOS ESTÁTICOS Y MULTIMEDIA
+# ==========================
+staticfiles/
+media/
+
+# ==========================
+# 🛠️ CONFIGURACIONES DE EDITORES
+# ==========================
+.vscode/
+.idea/
+*.iml
+
+# ==========================
+# 🚀 CONFIGURACIONES DE DEPLOY
+# ==========================
+render.yaml
