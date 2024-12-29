@@ -27,7 +27,14 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default='fallback-secret-key')
 DEBUG = env.bool('DEBUG', default=False)
 
 # 🌐 Dominios permitidos
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['kafe-kean.onrender.com', 'www.kafe-kean.onrender.com'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+    '127.0.0.1',        # Acceso local
+    'localhost',        # Acceso local
+    'kafe-kean.onrender.com',  # Dominio principal en Render
+    'www.kafe-kean.onrender.com',  # Subdominio www en Render
+    'kafekean.com',     # Dominio personalizado
+    'www.kafekean.com'  # Subdominio www personalizado
+])
 
 # ==========================
 # 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS
