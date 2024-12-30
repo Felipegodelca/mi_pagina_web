@@ -1,4 +1,14 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
-  "startCommand": "waitress-serve --listen=0.0.0.0:$PORT mi_pagina_web.wsgi:application"
+  "builds": [
+    {
+      "src": "mi_pagina_web/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "mi_pagina_web/wsgi.py"
+    }
+  ]
 }
