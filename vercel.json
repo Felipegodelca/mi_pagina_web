@@ -1,13 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "mi_pagina_web/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.9.21"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",

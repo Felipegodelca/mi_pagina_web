@@ -13,12 +13,7 @@ from django.core.wsgi import get_wsgi_application
 # ==========================
 # 🌍 Configurar el Entorno
 # ==========================
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')  # Por defecto, asumimos producción si no está definido
-
-if DJANGO_ENV == 'production':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings')
-else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mi_pagina_web.settings')
 
 # ==========================
 # 🚀 Aplicación WSGI
