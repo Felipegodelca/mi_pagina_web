@@ -1,10 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "mi_pagina_web/wsgi.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
