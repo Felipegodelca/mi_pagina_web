@@ -56,3 +56,4 @@ media/
 # 🚀 CONFIGURACIONES DE DEPLOY
 # ==========================
 render.yamlc
+.vercel
