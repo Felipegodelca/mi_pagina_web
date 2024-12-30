@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 import environ
-import dj_database_url
 
 # ==========================
 # 📁 BASE DIRECTORY
@@ -22,31 +21,29 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env.consolidado'))
 # 🔒 CONFIGURACIÓN DE SEGURIDAD
 # ==========================
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='fallback-secret-key')
-
-# 🚀 Modo de depuración (Siempre False en producción)
 DEBUG = env.bool('DEBUG', default=False)
 
-# 🌐 Dominios permitidos
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
-    '127.0.0.1',        # Acceso local
-    'localhost',        # Acceso local
-    'kafe-kean.onrender.com',  # Dominio principal en Render
-    'www.kafe-kean.onrender.com',  # Subdominio www en Render
-    'kafekean.com',     # Dominio personalizado
-    'www.kafekean.com'  # Subdominio www personalizado
+    '127.0.0.1',
+    'localhost',
+    'kafekean.vercel.app',
+    'www.kafekean.vercel.app',
+    'kafekean.com',
+    'www.kafekean.com'
 ])
 
 # ==========================
-# 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS
+# 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS (SQLite Temporal)
 # ==========================
 DATABASES = {
-    'default': dj_database_url.config(
-        default=env('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # ==========================
-# 📧 CONFIGURACIÓN DE CORREO ELECTRÓNICO
+# 📧 CONFIGURACIÓN DE CORREO ELECTRÓNICO (Zoho Mail)
 # ==========================
 EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = env('EMAIL_HOST', default='smtp.zoho.com')
@@ -57,75 +54,28 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='felipegodelca@kafekean.com')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 
 # ==========================
-# 🔐 SEGURIDAD DE COOKIES Y CSRF (En Producción: True)
+# 🔐 SEGURIDAD
 # ==========================
-SESSION_COOKIE_SECURE = True  # Cookies solo disponibles vía HTTPS
-CSRF_COOKIE_SECURE = True  # CSRF protegido vía HTTPS
-SECURE_SSL_REDIRECT = True  # Redirige todo a HTTPS
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
+SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', default=31536000)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True)
+SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD', default=True)
 
 # ==========================
-# 🔐 SEGURIDAD HSTS (En Producción)
-# ==========================
-SECURE_HSTS_SECONDS = 31536000  # Forzar HTTPS por 1 año
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-
-# ==========================
-# 🛡️ CONFIGURACIÓN DE CSRF Trusted Origins
+# 🛡️ CSRF Trusted Origins
 # ==========================
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
-    'https://kafe-kean.onrender.com',
-    'https://www.kafe-kean.onrender.com'
+    'https://kafekean.vercel.app',
+    'https://www.kafekean.vercel.app',
+    'https://kafekean.com',
+    'https://www.kafekean.com'
 ])
 
 # ==========================
-# 🗂️ CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS
+# 🛠️ CONFIGURACIÓN DE PLANTILLAS
 # ==========================
-STATIC_URL = '/static/'
-# En producción, los archivos estáticos se recopilan en esta carpeta
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-# Almacenamiento para producción con WhiteNoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# ==========================
-# 🖼️ CONFIGURACIÓN DE ARCHIVOS DE MEDIOS
-# ==========================
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-# ==========================
-# 🚀 APLICACIONES INSTALADAS
-# ==========================
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.postgres',  # Funcionalidades específicas de PostgreSQL
-    'articulos',  # Tu aplicación personalizada
-]
-
-# ==========================
-# 🛡️ MIDDLEWARE
-# ==========================
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para archivos estáticos
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-# ==========================
-# 🛠️ CONFIGURACIÓN DE URLS Y PLANTILLAS
-# ==========================
-ROOT_URLCONF = 'mi_pagina_web.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -143,16 +93,41 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
+# ==========================
+# 🗂️ ARCHIVOS ESTÁTICOS Y MEDIOS
+# ==========================
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # ==========================
-# 🔑 VALIDACIÓN DE CONTRASEÑAS
+# 🚀 APLICACIONES INSTALADAS
 # ==========================
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'articulos',  # Tu aplicación personalizada
+]
+
+# ==========================
+# 🛡️ MIDDLEWARE
+# ==========================
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 # ==========================
@@ -165,6 +140,11 @@ USE_L10N = True
 USE_TZ = True
 
 # ==========================
-# ✅ ARCHIVOS ESTÁTICOS EN PRODUCCIÓN
+# ✅ CONFIGURACIÓN ADICIONAL
 # ==========================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==========================
+# 🚀 WSGI
+# ==========================
+WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
