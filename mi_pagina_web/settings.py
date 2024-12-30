@@ -41,25 +41,15 @@ DATABASES = {
 }
 
 # ==========================
-# 📧 CONFIGURACIÓN DE CORREO ELECTRÓNICO (Zoho Mail)
-# ==========================
-EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.zoho.com')
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=False)
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='felipegodelca@kafekean.com')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
-
-# ==========================
 # 🔐 SEGURIDAD
 # ==========================
-SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
-CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=True)
-SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', default=31536000)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True)
-SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD', default=True)
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = not DEBUG  # Desactiva en desarrollo, activa en producción
+
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
 
 # ==========================
 # 🛡️ CSRF Trusted Origins
@@ -117,7 +107,7 @@ INSTALLED_APPS = [
 # ==========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Manejo de archivos estáticos
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -144,3 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 🚀 WSGI
 # ==========================
 WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
+
+# ==========================
+# 📄 URL ROOT
+# ==========================
+ROOT_URLCONF = 'mi_pagina_web.urls'
