@@ -35,16 +35,14 @@ urlpatterns = [
 # 🛡️ MANEJO DE ARCHIVOS ESTÁTICOS Y MEDIA
 # ==========================
 if settings.DEBUG:
-    # Desarrollo: Servir archivos estáticos y media desde el servidor Django
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
 else:
-    # Producción: Usar archivos servidos por el servidor web (ej. Render, Nginx)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # ==========================
-# 🔑 AUTENTICACIÓN PREDETERMINADA (Producción)
+# 🔑 AUTENTICACIÓN PREDETERMINADA
 # ==========================
 if not settings.DEBUG:
     urlpatterns += [

@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # 🔑 INICIALIZAR ENVIRON
 # ==========================
 env = environ.Env(
-    DEBUG=(bool, False)  # En producción: False
+    DEBUG=(bool, False)
 )
 
 # Leer el archivo .env.consolidado
@@ -31,7 +31,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
 ])
 
 # ==========================
-# 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS (SQLite)
+# 🛠️ CONFIGURACIÓN DE BASE DE DATOS (SQLite)
 # ==========================
 DATABASES = {
     'default': {
@@ -75,7 +75,7 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Asegúrate de tener una carpeta 'templates'
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,36 +109,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articulos',  # Tu aplicación personalizada
+    'articulos',
 ]
-
-# ==========================
-# 🛡️ MIDDLEWARE
-# ==========================
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-# ==========================
-# 🌎 INTERNACIONALIZACIÓN
-# ==========================
-LANGUAGE_CODE = 'es'
-TIME_ZONE = 'America/Mexico_City'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-
-# ==========================
-# ✅ CONFIGURACIÓN ADICIONAL
-# ==========================
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ==========================
 # 🚀 WSGI
