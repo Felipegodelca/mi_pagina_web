@@ -1,1 +1,1 @@
-web: gunicorn mi_pagina_web.wsgi:application
+web: waitress-serve --listen=0.0.0.0:$PORT mi_pagina_web.wsgi:application
